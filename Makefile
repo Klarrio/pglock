@@ -26,8 +26,8 @@ release: clean_release
 	@mkdir -p dist/
 	CGO_ENABLED=0 gox -osarch="darwin/amd64 linux/amd64 freebsd/amd64" ${LDFLAGS} --output "dist/${BINARY}_{{.OS}}_{{.Arch}}"
 
-	tar -czvf dist/${BINARY}-linux-${VERSION}.tar.gz dist/${BINARY}_linux_amd64
-	tar -czvf dist/${BINARY}-macos-${VERSION}.tar.gz dist/${BINARY}_darwin_amd64
-	tar -czvf dist/${BINARY}-freebsd-${VERSION}.tar.gz dist/${BINARY}_freebsd_amd64
+	tar -czvf dist/${BINARY}-linux-${VERSION}.tar.gz -C dist/ ${BINARY}_linux_amd64
+	tar -czvf dist/${BINARY}-macos-${VERSION}.tar.gz -C dist/ ${BINARY}_darwin_amd64
+	tar -czvf dist/${BINARY}-freebsd-${VERSION}.tar.gz -C dist/ ${BINARY}_freebsd_amd64
 
 	echo "Built artifacts:" dist/*.tar.gz
